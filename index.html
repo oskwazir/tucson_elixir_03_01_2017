@@ -26,8 +26,44 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section id="fragments">
+					<h1>Nerves</h1>
+					<p>Develop &amp; Deploy embedded Elixir apps with ease</p>
+					<p class="fragment">Or how to avoid pain &amp; agony with hardware</p>
+					</section>
+				<section>
+					<h3>Typical Embedded Development Process</h3>
+					<ul>
+						<li>download OS image</li>
+						<li>burn image to SD card</li>
+						<li>get updates</li>
+						<li>find packages... be disappointed</li>
+						<li>find sources</li>
+						<li>find dependencies</li>
+						<li>compile, compile, 😴</li>
+						<li>tinker</li>
+					</ul>
+
+				</section>
+				<section>
+					<h3>You can waste hours struggling with poor documentation if your hardware is not a Raspberry Pi or BeagleBone, and even then you'll waste a lot of time compiling</h3>
+				</section>
+				<section><h3>Nerves</h3>
+					<ul>
+						<li>Build tooling with BuildRoot</li>
+						<li>Enough infrastructure to get Elixir\Erlang &amp; OTP running on Linux</li>
+						<li>Start small, build up as you need</li>
+						<li>Cross-compiled</li>
+						<li>Use Elixir/Erlang &amp; OTP over OS</li>
+					</ul>
+				</section>
+				<section>
+						<img src="/images/packaging.png" alt="">
+				</section>
+				<section>
+						<img src="/images/image.png" alt="">
+				</section>
+
 			</div>
 		</div>
 
