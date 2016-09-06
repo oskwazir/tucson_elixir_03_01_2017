@@ -11,14 +11,16 @@
 // ---------------------------------------------
 
 // Override theme settings (see ../template/settings.scss)
-$backgroundColor: #4e2a8e;
+$backgroundColor: #fff;
 
-$mainColor: #fff;
-$headingColor: #fff;
+$mainColor: #444;
+$headingColor: #222;
+$sansFont: "program", Helvetica, sans-serif;
+$slabFont: "program", Helvetica, sans-serif;
 
 $mainFontSize: 38px;
-$mainFont: "vista-sans", Helvetica, sans-serif;
-$headingFont: "vista-slab", Helvetica, sans-serif;
+$mainFont: $sansFont;
+$headingFont: $slabFont;
 $headingTextShadow: none;
 $headingLetterSpacing: normal;
 $headingTextTransform: uppercase;
