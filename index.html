@@ -6,7 +6,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Nerves Presentation</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/vista.css">
@@ -30,31 +30,86 @@
 					<h1>Nerves</h1>
 					<p>Develop &amp; Deploy embedded Elixir apps with ease</p>
 					<p class="fragment">Or how to avoid pain &amp; agony with hardware</p>
-					</section>
+				</section>
+				<section>
+					<h2>Too much to cover</h2>
+					<ul>
+						<li>What exactly is Nerves</li>
+						<li>What problems does it solve for you</li>
+						<li></li>
+					</ul>
+				</section>
 				<section>
 					<h3>Typical Embedded Development Process</h3>
 					<ul>
+						<li>get some kind of CPU</li>
 						<li>download OS image</li>
 						<li>burn image to SD card</li>
+						<li>find some way to ssh</li>
 						<li>get updates</li>
-						<li>find packages... be disappointed</li>
+						<li>find packages &amp; be disappointed</li>
 						<li>find sources</li>
 						<li>find dependencies</li>
-						<li>compile, compile, 😴</li>
-						<li>tinker</li>
+						<li>compile, compile... 😴</li>
+						<li>figure out if anything works</li>
 					</ul>
-
+					<p>this gets old after a while</p>
 				</section>
 				<section>
-					<h3>You can waste hours struggling with poor documentation if your hardware is not a Raspberry Pi or BeagleBone, and even then you'll waste a lot of time compiling</h3>
-				</section>
-				<section><h3>Nerves</h3>
+					<h3>Usual Problems</h3>
 					<ul>
-						<li>Build tooling with BuildRoot</li>
+						<li>using completely different CPU</li>
+						<li>different OS image</li>
+						<li>OS package mangement is 😭</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Not here to help you</h3>
+					<ul>
+						<li><a href="http://www.openembedded.org/wiki/Main_Page">OpenEmbedded</a></li>
+						<li><a href="https://www.yoctoproject.org">Yocto Project</a></li>
+					</ul>
+				</section>
+				<section>
+				<h3>Nerves</h3>
+					<ul>
+						<li>Build tooling with <a href="https://buildroot.org">BuildRoot</a></li>
 						<li>Enough infrastructure to get Elixir\Erlang &amp; OTP running on Linux</li>
 						<li>Start small, build up as you need</li>
 						<li>Cross-compiled</li>
 						<li>Use Elixir/Erlang &amp; OTP over OS</li>
+					</ul>
+				</section>
+				<section>
+					<h3>What is <a href="https://buildroot.org">BuildRoot</a></h3>
+					<p>It's a horrible name. I thought it was *nix disk partioning</p>
+					<blockquote cite="https://buildroot.org">
+						&ldquo;Buildroot is a simple, efficient and easy-to-use <strong>tool</strong> to generate embedded Linux systems through cross-compilation.&rdquo;
+					</blockquote>
+				</section>
+				<section>
+					<img src="/images/buildroot_screen.png" alt="">
+				</section>
+				<section>
+					<h3>Nerves has config files for some boards</h3>
+					<p>For example the Nerves system configuration for the RaspberryPi 3 is on github. <a href="https://github.com/nerves-project/nerves_system_rpi3">https://github.com/nerves-project/nerves_system_rpi3</a></p>
+				</section>
+				<section>
+					<h3>A few more tools</h3>
+					<ul>
+						<li>fwup - Configurable embedded Linux firmware update creator and runner</li>
+						<li>SquashFS - compressed read-only file system for Linux</li>
+						<li>GNU coreutils - core utilities which are expected to exist on every operating system.</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Some terms you'll hear</h3>
+					<ul>
+						<li>host - machine that edits source, compiles and assembles firmware</li>
+						<li>target - device firmware is built for</li>
+						<li>toolchain - tools required to build code for the target, e.g. compilers, linkers, binutils, and C runtime</li>
+						<li>system - Buildroot-based Linux distribution that has been customized and cross-compiled for a particular target</li>
+						<li>assembly - process of combining system, application, and configuration into a firmware bundle</li>
 					</ul>
 				</section>
 				<section>
