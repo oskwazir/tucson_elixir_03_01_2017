@@ -34,9 +34,10 @@
 				<section>
 					<h2>Too much to cover</h2>
 					<ul>
-						<li>What exactly is Nerves</li>
-						<li>What problems does it solve for you</li>
-						<li></li>
+						<li>The Problem</li>
+						<li>Nerves by definition</li>
+						<li>How to start a basic Nerves app</li>
+						<li>Maybe show a "working" demo</li>
 					</ul>
 				</section>
 				<section>
@@ -61,10 +62,12 @@
 						<li>using completely different CPU</li>
 						<li>different OS image</li>
 						<li>OS package mangement is 😭</li>
+						<li>setting up cross compiling can take time</li>
 					</ul>
 				</section>
 				<section>
 					<h3>Not here to help you</h3>
+					<h4>These tools do not solve anything</h4>
 					<ul>
 						<li><a href="http://www.openembedded.org/wiki/Main_Page">OpenEmbedded</a></li>
 						<li><a href="https://www.yoctoproject.org">Yocto Project</a></li>
@@ -82,7 +85,7 @@
 				</section>
 				<section>
 					<h3>What is <a href="https://buildroot.org">BuildRoot</a></h3>
-					<p>It's a horrible name. I thought it was *nix disk partioning</p>
+					<p>It's a horrible name. I thought it was some *nix boot file</p>
 					<blockquote cite="https://buildroot.org">
 						&ldquo;Buildroot is a simple, efficient and easy-to-use <strong>tool</strong> to generate embedded Linux systems through cross-compilation.&rdquo;
 					</blockquote>
@@ -110,15 +113,59 @@
 						<li>toolchain - tools required to build code for the target, e.g. compilers, linkers, binutils, and C runtime</li>
 						<li>system - Buildroot-based Linux distribution that has been customized and cross-compiled for a particular target</li>
 						<li>assembly - process of combining system, application, and configuration into a firmware bundle</li>
+						<li>firmware bundle - single file that contains an assembled version of everything needed to burn firmware</li>
+						<li>firmware image - Built from a firmware bundle and contains the partition table, partitions, bootloader, etc.</li>
 					</ul>
 				</section>
 				<section>
 						<img src="/images/packaging.png" alt="">
 				</section>
 				<section>
-						<img src="/images/image.png" alt="">
+					<h3>Get Nerves installed</h3>
+					<pre><code class="hljs" data-trim contenteditable>
+$ brew update
+$ brew install erlang
+$ brew install elixir
+$ brew install fwup squashfs coreutils
+$ mix local.hex
+$ mix local.rebar
+$ mix archive.install https://github.com/nerves-project/archives/raw/master/nerves_bootstrap.ez
+					</code></pre>			
 				</section>
-
+				<section>
+					<h3>Create a new Nerves app</h3>
+					<pre><code class="hljs" data-trim contenteditable>
+$ mix nerves.new tucson_app --target rpi3
+$ mix do compile, firmware
+$ mix firmware.burn
+					</code></pre>
+				</section>
+						<section>
+			<img width="700" src="/images/supa-hot-fire.gif" alt="">
+		</section>
+		<section>
+				<img src="/images/image.png" alt="">
+		</section>
+		<section>
+			<h2>Where to go from here</h2>
+			<ul>
+				<li>Build your app like a regular Elixir app</li>
+				<li>Make heavy use of OTP</li>
+				<li>Get used to SD card swapping</li>
+			</ul>
+		</section>
+		<section>
+			<h2>What is not included with Nerves</h2>
+			<p>See all of the <a href="http://nerves-project.org/libraries/">libraries</a></p>
+		</section>
+		<section>
+			<p>Everything we just covered can be applied to an x86 chip running on a server. That's why I think Nerves has a lot of potential to change how Elixir apps are built &amp; deployed.</p>
+		</section>
+		<section>
+			<h2>Demo</h2>
+			<p>I built a Nerves app that opens on demand a stream to Twitter using <a href="https://github.com/parroty/extwitter"></a>extwitter</p>
+			<p>It's working but not how I want it to</p>
+		</section>
 			</div>
 		</div>
 
