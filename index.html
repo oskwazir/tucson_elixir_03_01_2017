@@ -32,16 +32,31 @@
 					<p class="fragment">Or how to avoid pain &amp; agony with hardware</p>
 				</section>
 				<section>
+					<h2>Omer Wazir</h2>
+					<p>Twitter: @thewazir</p>
+					<p>Slack: @omerwazir</p>
+					<p>Engineer at Tucson Embedded Systems</p>
+				</section>
+				<section>
+				<h2>Elixir Conf 2016</h2>
+					<img src="/images/badge_hacking.png" alt="">
+					<p>8 hours wasn't enough</p>
+				</section>
+				<section>
 					<h2>Too much to cover</h2>
 					<ul>
-						<li>The Problem</li>
+						<li>Common problems</li>
 						<li>Nerves by definition</li>
 						<li>How to start a basic Nerves app</li>
 						<li>Maybe show a "working" demo</li>
 					</ul>
 				</section>
 				<section>
-					<h3>Typical Embedded Development Process</h3>
+					<h2>Embedded</h2>
+					<p>I tend to think of it as any kind of computer that is delivered with or as a product. Often needs to meet certain power and temperature requirements. Usually has a way to interact with physical devices. Needs to just always work.</p>
+				</section>
+				<section>
+					<h2>Typical Embedded Development Process</h2>
 					<ul>
 						<li>get some kind of CPU</li>
 						<li>download OS image</li>
@@ -57,16 +72,16 @@
 					<p>this gets old after a while</p>
 				</section>
 				<section>
-					<h3>Usual Problems</h3>
+					<h2>Embedded dev world is so sad</h2>
 					<ul>
-						<li>using completely different CPU</li>
+						<li>using completely different CPU/board</li>
 						<li>different OS image</li>
 						<li>OS package mangement is 😭</li>
 						<li>setting up cross compiling can take time</li>
 					</ul>
 				</section>
 				<section>
-					<h3>Not here to help you</h3>
+					<h2>Not here to help you</h2>
 					<h4>These tools do not solve anything</h4>
 					<ul>
 						<li><a href="http://www.openembedded.org/wiki/Main_Page">OpenEmbedded</a></li>
@@ -74,7 +89,7 @@
 					</ul>
 				</section>
 				<section>
-				<h3>Nerves</h3>
+				<h2>Nerves</h2>
 					<ul>
 						<li>Build tooling with <a href="https://buildroot.org">BuildRoot</a></li>
 						<li>Enough infrastructure to get Elixir\Erlang &amp; OTP running on Linux</li>
@@ -84,7 +99,7 @@
 					</ul>
 				</section>
 				<section>
-					<h3>What is <a href="https://buildroot.org">BuildRoot</a></h3>
+					<h2>What is <a href="https://buildroot.org">BuildRoot</a></h2>
 					<p>It's a horrible name. I thought it was some *nix boot file</p>
 					<blockquote cite="https://buildroot.org">
 						&ldquo;Buildroot is a simple, efficient and easy-to-use <strong>tool</strong> to generate embedded Linux systems through cross-compilation.&rdquo;
@@ -94,19 +109,21 @@
 					<img src="/images/buildroot_screen.png" alt="">
 				</section>
 				<section>
-					<h3>Nerves has config files for some boards</h3>
+					<h2>Nerves Targets</h2>
+					<p>Nerves already supports some popular devices.</p>
 					<p>For example the Nerves system configuration for the RaspberryPi 3 is on github. <a href="https://github.com/nerves-project/nerves_system_rpi3">https://github.com/nerves-project/nerves_system_rpi3</a></p>
 				</section>
 				<section>
-					<h3>A few more tools</h3>
+					<h2>A few more tools</h2>
 					<ul>
 						<li>fwup - Configurable embedded Linux firmware update creator and runner</li>
 						<li>SquashFS - compressed read-only file system for Linux</li>
 						<li>GNU coreutils - core utilities which are expected to exist on every operating system.</li>
+						<li>busybox - tiny versions of many common UNIX utilities into a single small executable</li>
 					</ul>
 				</section>
 				<section>
-					<h3>Some terms you'll hear</h3>
+					<h2>Some terms you'll hear</h2>
 					<ul>
 						<li>host - machine that edits source, compiles and assembles firmware</li>
 						<li>target - device firmware is built for</li>
@@ -121,7 +138,7 @@
 						<img src="/images/packaging.png" alt="">
 				</section>
 				<section>
-					<h3>Get Nerves installed</h3>
+					<h2>Get Nerves installed</h2>
 					<pre><code class="hljs" data-trim contenteditable>
 $ brew update
 $ brew install erlang
@@ -136,6 +153,7 @@ $ mix archive.install https://github.com/nerves-project/archives/raw/master/nerv
 					<h3>Create a new Nerves app</h3>
 					<pre><code class="hljs" data-trim contenteditable>
 $ mix nerves.new tucson_app --target rpi3
+$ mix deps.get
 $ mix do compile, firmware
 $ mix firmware.burn
 					</code></pre>
@@ -150,6 +168,7 @@ $ mix firmware.burn
 			<h2>Where to go from here</h2>
 			<ul>
 				<li>Build your app like a regular Elixir app</li>
+				<li>Make use of umbrella apps</li>
 				<li>Make heavy use of OTP</li>
 				<li>Get used to SD card swapping</li>
 			</ul>
@@ -163,8 +182,10 @@ $ mix firmware.burn
 		</section>
 		<section>
 			<h2>Demo</h2>
-			<p>I built a Nerves app that opens on demand a stream to Twitter using <a href="https://github.com/parroty/extwitter"></a>extwitter</p>
-			<p>It's working but not how I want it to</p>
+			<p>I built a Nerves app that opens on demand a stream to Twitter using <a href="https://github.com/parroty/extwitter"></a>extwitter. The idea is to send the stream of tweets to a Phoenix channel and show the tweets on a web page.</p>
+		</section>
+		<section>
+			<h2>The End</h2>
 		</section>
 			</div>
 		</div>
