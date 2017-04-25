@@ -1,4 +1,4 @@
-# Elixir Nerves presentation
-## Tucson Elixir Meetup 09-07-2016
+# Elixir 101 - IEx presentation
+## Tucson Elixir Meetup 03-01-2017
 
 This is a work in progress

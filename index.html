@@ -6,7 +6,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Nerves Presentation</title>
+		<title>Elixir 101 - IEx</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/vista.css">
@@ -27,9 +27,8 @@
 		<div class="reveal">
 			<div class="slides">
 				<section id="fragments">
-					<h1>Nerves</h1>
-					<p>Develop &amp; Deploy embedded Elixir apps with ease</p>
-					<p class="fragment">Or how to avoid pain &amp; agony with hardware</p>
+					<h1>Elixir 101 - IEx</h1>
+						<p>Understand what you can do with Elixir’s interactive shell</p>
 				</section>
 				<section>
 					<h2>Omer Wazir</h2>
@@ -38,155 +37,121 @@
 					<p>Engineer at Tucson Embedded Systems</p>
 				</section>
 				<section>
-				<h2>Elixir Conf 2016</h2>
-					<img src="/images/badge_hacking.png" alt="">
-					<p>8 hours wasn't enough</p>
+				<h2>How to install IEx</h2>
+					<a href="http://elixir-lang.org/install.html">Install Elixir and you get IEx for free 😎</a>
 				</section>
 				<section>
-					<h2>Too much to cover</h2>
-					<ul>
-						<li>Common problems</li>
-						<li>Nerves by definition</li>
-						<li>How to start a basic Nerves app</li>
-						<li>Maybe show a "working" demo</li>
-					</ul>
-				</section>
-				<section>
-					<h2>Embedded</h2>
-					<p>I tend to think of it as any kind of computer that is delivered with or as a product. Often needs to meet certain power and temperature requirements. Usually has a way to interact with physical devices. Needs to just always work.</p>
-				</section>
-				<section>
-					<h2>Typical Embedded Development Process</h2>
-					<ul>
-						<li>get some kind of CPU</li>
-						<li>download OS image</li>
-						<li>burn image to SD card</li>
-						<li>find some way to ssh</li>
-						<li>get updates</li>
-						<li>find packages &amp; be disappointed</li>
-						<li>find sources</li>
-						<li>find dependencies</li>
-						<li>compile, compile... 😴</li>
-						<li>figure out if anything works</li>
-					</ul>
-					<p>this gets old after a while</p>
-				</section>
-				<section>
-					<h2>Embedded dev world is so sad</h2>
-					<ul>
-						<li>using completely different CPU/board</li>
-						<li>different OS image</li>
-						<li>OS package mangement is 😭</li>
-						<li>setting up cross compiling can take time</li>
-					</ul>
-				</section>
-				<section>
-					<h2>Not here to help you</h2>
-					<h4>These tools do not solve anything</h4>
-					<ul>
-						<li><a href="http://www.openembedded.org/wiki/Main_Page">OpenEmbedded</a></li>
-						<li><a href="https://www.yoctoproject.org">Yocto Project</a></li>
-					</ul>
-				</section>
-				<section>
-				<h2>Nerves</h2>
-					<ul>
-						<li>Build tooling with <a href="https://buildroot.org">BuildRoot</a></li>
-						<li>Enough infrastructure to get Elixir\Erlang &amp; OTP running on Linux</li>
-						<li>Start small, build up as you need</li>
-						<li>Cross-compiled</li>
-						<li>Use Elixir/Erlang &amp; OTP over OS</li>
-					</ul>
-				</section>
-				<section>
-					<h2>What is <a href="https://buildroot.org">BuildRoot</a></h2>
-					<p>It's a horrible name. I thought it was some *nix boot file</p>
-					<blockquote cite="https://buildroot.org">
-						&ldquo;Buildroot is a simple, efficient and easy-to-use <strong>tool</strong> to generate embedded Linux systems through cross-compilation.&rdquo;
-					</blockquote>
-				</section>
-				<section>
-					<img src="/images/buildroot_screen.png" alt="">
-				</section>
-				<section>
-					<h2>Nerves Targets</h2>
-					<p>Nerves already supports some popular devices.</p>
-					<p>For example the Nerves system configuration for the RaspberryPi 3 is on github. <a href="https://github.com/nerves-project/nerves_system_rpi3">https://github.com/nerves-project/nerves_system_rpi3</a></p>
-				</section>
-				<section>
-					<h2>A few more tools</h2>
-					<ul>
-						<li>fwup - Configurable embedded Linux firmware update creator and runner</li>
-						<li>SquashFS - compressed read-only file system for Linux</li>
-						<li>GNU coreutils - core utilities which are expected to exist on every operating system.</li>
-						<li>busybox - tiny versions of many common UNIX utilities into a single small executable</li>
-					</ul>
-				</section>
-				<section>
-					<h2>Some terms you'll hear</h2>
-					<ul>
-						<li>host - machine that edits source, compiles and assembles firmware</li>
-						<li>target - device firmware is built for</li>
-						<li>toolchain - tools required to build code for the target, e.g. compilers, linkers, binutils, and C runtime</li>
-						<li>system - Buildroot-based Linux distribution that has been customized and cross-compiled for a particular target</li>
-						<li>assembly - process of combining system, application, and configuration into a firmware bundle</li>
-						<li>firmware bundle - single file that contains an assembled version of everything needed to burn firmware</li>
-						<li>firmware image - Built from a firmware bundle and contains the partition table, partitions, bootloader, etc.</li>
-					</ul>
-				</section>
-				<section>
-						<img src="/images/packaging.png" alt="">
-				</section>
-				<section>
-					<h2>Get Nerves installed</h2>
+					<h2>Start IEx</h2>
+					<p>Interactive mode <span style="text-decoration: underline;">evalutes</span> any Elixir expression</p>
+					<p>Excellent place to get comfortable with Elixir &amp; OTP</p>
 					<pre><code class="hljs" data-trim contenteditable>
-$ brew update
-$ brew install erlang
-$ brew install elixir
-$ brew install fwup squashfs coreutils
-$ mix local.hex
-$ mix local.rebar
-$ mix archive.install https://github.com/nerves-project/archives/raw/master/nerves_bootstrap.ez
+$ iex
+Erlang/OTP 19 [erts-8.2] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false]
+
+Interactive Elixir (1.4.1) - press Ctrl+C to exit (type h() ENTER for help)
+iex(1)> person = %{name: "Remo Williams"}
+%{name: "Remo Williams"}
+iex(2)>
 					</code></pre>			
 				</section>
 				<section>
-					<h3>Create a new Nerves app</h3>
+					<h2>A few things IEx can do</h2>
+					<ul>
+						<li><a href="https://hexdocs.pm/iex/IEx.Helpers.html">IEx Helpers</a>... AMAZING</li>
+						<li>Autocomplete with . (dot) lookup</li>
+						<li>User shells &amp; Remote shells</li>
+						<li>Evaluates Code - not so good for benchmarks</li>
+						<li>Helps prevent involuntary regular expressions</li>
+						<li>Shell Configuration</li>
+					</ul>
+					<p>All features detailed <a href="https://hexdocs.pm/iex/IEx.html">here</a></p>
+				</section>
+				<section>
+					<h2>IEx.helpers</h2>
+					<p>Run <span style="text-decoration: underline;"><code>h IEx.Helpers</code></span> inside IEx</p>
+					<h4>Some examples</h4>
+					<ul>
+						<li><code>h\1</code> - get module docs</li>
+						<li><code>i\1</code> - print stuff about a type</li>
+						<li><code>respawn\0</code> - respawn shell</li>
+						<li>... 24 total helpers available</li>
+					</ul>
+				</section>
+				<section>
+					<h2>dot helpers</h2>
+					<p>If you don't know what functions are available in a module, type the module name with a dot on the end and press tab to see a list.</p>
+				</section>
+				<section>
+					<h2>#iex:break</h2>
 					<pre><code class="hljs" data-trim contenteditable>
-$ mix nerves.new tucson_app --target rpi3
-$ mix deps.get
-$ mix do compile, firmware
-$ mix firmware.burn
+iex(2)> %{user: "Artoo",
+...(2)> name: "R2D2',
+...(2)> type: 'robot'}
+...(2)> .
+...(2)> ;
+...(2)> end
+...(2)> %}
+...(2)> #iex:break
+** (TokenMissingError) iex:2: incomplete expression
 					</code></pre>
 				</section>
-						<section>
-			<img width="700" src="/images/supa-hot-fire.gif" alt="">
-		</section>
-		<section>
-				<img src="/images/image.png" alt="">
-		</section>
-		<section>
-			<h2>Where to go from here</h2>
-			<ul>
-				<li>Build your app like a regular Elixir app</li>
-				<li>Make use of umbrella apps</li>
-				<li>Make heavy use of OTP</li>
-				<li>Get used to SD card swapping</li>
-			</ul>
-		</section>
-		<section>
-			<h2>What is not included with Nerves</h2>
-			<p>See all of the <a href="http://nerves-project.org/libraries/">libraries</a></p>
-		</section>
-		<section>
-			<p>Everything we just covered can be applied to an x86 chip running on a server. That's why I think Nerves has a lot of potential to change how Elixir apps are built &amp; deployed.</p>
-		</section>
-		<section>
-			<h2>Demo</h2>
-			<p>I built a Nerves app that opens on demand a stream to Twitter using <a href="https://github.com/parroty/extwitter"></a>extwitter. The idea is to send the stream of tweets to a Phoenix channel and show the tweets on a web page.</p>
-		</section>
-		<section>
-			<h2>The End</h2>
-		</section>
+				<section>
+					<h2>Shell Configuration</h2>
+					<ul>
+						<li>:colors</li>
+						<li>:inspect</li>
+						<li>:width</li>
+						<li>:history_size</li>
+						<li>:default_prompt</li>
+						<li>:alive_prompt</li>
+					</ul>
+				</section>
+				<section>
+					<h2>:inspect</h2>
+					<p>Inspect options used by the shell when printing results of expression evaluation</p>
+					<p>If you want to see everything during IO.inspect\1 then do this:</p>
+					<pre><code>
+IEx.configure [inspect: [limit: :infinity]]
+					</code></pre>
+					<a href="https://hexdocs.pm/elixir/Inspect.Opts.html">Inspect.Opts</a>
+				</section>
+				<section>
+					<h2>Different inspects</h2>
+					<p><code>inspect\1</code> and <code>i\1</code> are different</p>
+					<pre><code>
+iex(2)> foo = %{ name: "Bruce Wayne", location: "Gotham"}
+%{location: "Gotham", name: "Bruce Wayne"}
+iex(3)> inspect(foo)
+"%{location: \"Gotham\", name: \"Bruce Wayne\"}"
+iex(4)> i(foo)
+Term
+  %{location: "Gotham", name: "Bruce Wayne"}
+Data type
+  Map
+Reference modules
+  Map
+Implemented protocols
+  IEx.Info, Collectable, Enumerable, Inspect
+					</code></pre>
+				</section>
+				<section>
+					<h2>Pry into code</h2>
+					<p>This is its own talk but IEx.pry is useful for debugging</p>
+					<pre><code>
+defmodule say do
+ require IEx
+
+ do something() do
+  IEx.pry
+
+  IO.puts("Hello, World")
+ end
+end
+					</code></pre>
+				</section>
+				<section>
+					<h2>That's all I got for you</h2>
+				</section>
 			</div>
 		</div>
 
